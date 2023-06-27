@@ -25,7 +25,8 @@ def hbnb():
 
 @app.route('/c/<text>')
 def c_is_fun(text):
-    """Return: reformatted text
+    """
+        Return: reformatted text
     """
     return 'C ' + text.replace('_', ' ')
 
