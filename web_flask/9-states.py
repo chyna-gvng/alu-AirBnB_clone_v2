@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/states')
 @app.route('/states/<id>')
-def states_list(id=True):
+def states_list(id=None):
     """
         Return: HTML page with list of states
     """
