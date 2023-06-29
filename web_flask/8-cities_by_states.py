@@ -15,7 +15,7 @@ def states_list():
         Return: HTML page with list of states
     """
     path = '8-cities_by_states.html'
-    states = storage.all(State)
+    states = storage.all('State')
     return render_template(path, states=states)
 
 
