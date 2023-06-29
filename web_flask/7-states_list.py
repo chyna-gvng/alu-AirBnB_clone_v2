@@ -18,7 +18,7 @@ def states_list():
         Return: HTML page with list of states
     """
     path = '7-states_list.html'
-    states = storage.all(State)
+    states = storage.all(State.__name__)
     """
         sort State object alphabetically by name
     """
