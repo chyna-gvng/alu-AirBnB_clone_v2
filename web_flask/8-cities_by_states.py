@@ -22,7 +22,9 @@ def cities_route():
 
 @app.teardown_appcontext
 def teardown(self):
-    """Removes the current SQLAlchemy Session"""
+    """
+        Clean-up session
+    """
     storage.close()
 
 
