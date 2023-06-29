@@ -1,37 +1,33 @@
 #!/usr/bin/python3
 """
-Starts a Flask web application
+    python script that starts a Flask web application
 """
 
-from http.client import FOUND
-from flask import Flask, render_template
-from models import *
+from models import storage
 from models.state import State
+from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/states', strict_slashes=False)
-def states():
-    """states"""
+@app.route('/states')
+@app.route('/states/<id>')
+def states_list(id=None):
+    """
+        Return: HTML page with list of states
+    """
+    path = '9-states.html'
     states = storage.all('State')
-    return render_template('9-states.html', states=states, id=False)
-
-
-@app.route('/states/<id>', strict_slashes=False)
-def states_id(id):
-    """states with filter (Objects State)"""
-    states = storage.all('State')
-    for state in states.values():
-        if state.id == str(id):
-            return render_template('9-states.html', states=state)
-    return render_template('9-states.html', no_found=True)
+    return render_template(path, states=states, id=id)
 
 
 @app.teardown_appcontext
-def storage_close(self):
-    '''Datasource'''
+def app_teardown(arg=None):
+    """
+        Clean-up session
+    """
     storage.close()
 
 
 if __name__ == '__main__':
+    app.url_map.strict_slashes = False
     app.run(host='0.0.0.0', port=5000)
