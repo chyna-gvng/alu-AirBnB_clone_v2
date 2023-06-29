@@ -13,7 +13,9 @@ app = Flask(__name__)
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_route():
-    """Comment"""
+    """
+        Return: HTML page with list of states
+    """
     return render_template('8-cities_by_states.html',
                            states=storage.all('State').values())
 
